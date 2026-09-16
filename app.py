@@ -156,7 +156,7 @@ def render_milhao():
 
 def render_juros():
     st.button("← Voltar", on_click=go_to, args=("home",))
-    st.title("📊 Juros Compostos")
+    st.title("Juros Compostos")
     st.write(
         "Informe um valor inicial, uma taxa de juros e um prazo. Se quiser, some aportes mensais "
         "para ver o efeito de investir com constância."
