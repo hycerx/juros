@@ -66,7 +66,7 @@ def render_home():
 
     col1 = st.container(border=True)
     with col1:
-        st.subheader("Primeiro Milhão")
+        st.subheader("Sua Meta")
         st.write("Quanto tempo falta para chegar à sua meta, dado o que você já tem, aporta e rende.")
         st.button("Abrir calculadora", key="btn_milhao", on_click=go_to, args=("milhao",), use_container_width=True)
 
@@ -85,22 +85,22 @@ def render_home():
 
 
 
-def render_milhao():
+def render_meta():
     st.button("← Voltar", on_click=go_to, args=("home",))
-    st.title("Primeiro Milhão")
+    st.title("Sua Meta")
     st.write(
         "Informe quanto você já tem, quanto consegue investir por mês e a taxa de juros esperada. "
         "Calculamos em quanto tempo você atinge sua meta."
     )
 
     col1, col2 = st.columns(2)
-    goal = col1.number_input("Valor da meta (R$)", min_value=0.0, value=1_000_000.0, step=1000.0)
-    initial = col2.number_input("Quanto já tem investido (R$)", min_value=0.0, value=1000.0, step=100.0)
+    goal = col1.number_input("Valor da meta (R$)", min_value=0.0, value=0.0, step=0.0)
+    initial = col2.number_input("Quanto já tem investido (R$)", min_value=0.0, value=0.0, step=0.0)
 
     col3, col4, col5 = st.columns([2, 1, 2])
-    rate_input = col3.number_input("Taxa de juros (%)", min_value=0.0, value=12.0, step=0.1)
+    rate_input = col3.number_input("Taxa de juros (%)", min_value=0.0, value=0.0, step=0.1)
     rate_period = col4.selectbox("Período", ["Ao ano", "Ao mês"], key="m_period")
-    monthly = col5.number_input("Aporte mensal (R$)", min_value=0.0, value=300.0, step=50.0)
+    monthly = col5.number_input("Aporte mensal (R$)", min_value=0.0, value=0.0, step=50.0)
 
     if st.button("Calcular", type="primary", key="calc_milhao"):
         if goal <= 0:
@@ -288,7 +288,7 @@ def render_imposto():
 
 pages = {
     "home": render_home,
-    "milhao": render_milhao,
+    "meta": render_meta,
     "juros": render_juros,
     "imposto": render_imposto,
 }
