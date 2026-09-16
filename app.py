@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Calculadoras Financeiras", page_icon="📈", layout="centered")
+st.set_page_config(page_title="Calculadoras Financeiras", layout="centered")
 
 
 def brl(v: float) -> str:
@@ -60,9 +60,6 @@ def go_to(page: str):
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
-# ----------------------------------------------------------------------------
-# HOME
-# ----------------------------------------------------------------------------
 
 def render_home():
     st.title(" Calculadoras Financeiras")
@@ -165,15 +162,15 @@ def render_juros():
         "para ver o efeito de investir com constância."
     )
 
-    c1, c2 = st.columns(2)
-    initial = c1.number_input("Valor inicial (R$)", min_value=0.0, value=5000.0, step=100.0, key="j_initial")
-    monthly = c2.number_input("Aporte mensal (R$)", min_value=0.0, value=200.0, step=50.0, key="j_monthly")
+    col1, col2 = st.columns(2)
+    initial = col1.number_input("Valor inicial (R$)", min_value=0.0, value=5000.0, step=100.0, key="j_initial")
+    monthly = col2.number_input("Aporte mensal (R$)", min_value=0.0, value=200.0, step=50.0, key="j_monthly")
 
-    c3, c4, c5, c6 = st.columns([2, 1, 2, 1])
-    rate_input = c3.number_input("Taxa de juros (%)", min_value=0.0, value=12.0, step=0.1, key="j_rate")
-    rate_period = c4.selectbox("Período", ["Ao ano", "Ao mês"], key="j_rate_period")
-    time_input = c5.number_input("Prazo", min_value=0.0, value=10.0, step=1.0, key="j_time")
-    time_period = c6.selectbox("Unidade", ["Anos", "Meses"], key="j_time_period")
+    col3, col4, col5, col6 = st.columns([2, 1, 2, 1])
+    rate_input = col3.number_input("Taxa de juros (%)", min_value=0.0, value=12.0, step=0.1, key="j_rate")
+    rate_period = col4.selectbox("Período", ["Ao ano", "Ao mês"], key="j_rate_period")
+    time_input = col5.number_input("Prazo", min_value=0.0, value=10.0, step=1.0, key="j_time")
+    time_period = col6.selectbox("Unidade", ["Anos", "Meses"], key="j_time_period")
 
     if st.button("Calcular", type="primary", key="calc_juros"):
         if time_input <= 0:
@@ -221,15 +218,15 @@ def render_imposto():
         "desconta no resgate, pela tabela regressiva."
     )
 
-    c1, c2 = st.columns(2)
-    initial = c1.number_input("Valor inicial (R$)", min_value=0.0, value=10000.0, step=100.0, key="i_initial")
-    monthly = c2.number_input("Aporte mensal (R$)", min_value=0.0, value=0.0, step=50.0, key="i_monthly")
+    col1, col2 = st.columns(2)
+    initial = col1.number_input("Valor inicial (R$)", min_value=0.0, value=10000.0, step=100.0, key="i_initial")
+    monthly = col2.number_input("Aporte mensal (R$)", min_value=0.0, value=0.0, step=50.0, key="i_monthly")
 
-    c3, c4, c5, c6 = st.columns([2, 1, 2, 1])
-    rate_input = c3.number_input("Taxa de juros (%)", min_value=0.0, value=12.0, step=0.1, key="i_rate")
-    rate_period = c4.selectbox("Período", ["Ao ano", "Ao mês"], key="i_rate_period")
-    time_input = c5.number_input("Prazo até o resgate", min_value=0.0, value=24.0, step=1.0, key="i_time")
-    time_period = c6.selectbox("Unidade", ["Meses", "Anos"], key="i_time_period")
+    col3, col4, col5, col6 = st.columns([2, 1, 2, 1])
+    rate_input = col3.number_input("Taxa de juros (%)", min_value=0.0, value=12.0, step=0.1, key="i_rate")
+    rate_period = col4.selectbox("Período", ["Ao ano", "Ao mês"], key="i_rate_period")
+    time_input = col5.number_input("Prazo até o resgate", min_value=0.0, value=24.0, step=1.0, key="i_time")
+    time_period = col6.selectbox("Unidade", ["Meses", "Anos"], key="i_time_period")
 
     if st.button("Calcular", type="primary", key="calc_imposto"):
         if time_input <= 0:
